@@ -19,10 +19,12 @@ public class TestingMain {
 
         //test - calculator
 
-        if (Calculator.add(1, 2) == 3 && Calculator.subtract(2, 2) == 0) {
-            System.out.println("Calculations OK!!!");
+        if (Calculator.add(1, 2) == 3) {
+            System.out.println("Adding OK!!!");
+        } else if (Calculator.subtract(2, 2) == 0) {
+            System.out.println("Subtraction OK!!!");
         } else {
-            System.out.println("Error!");
+            System.out.println("Error! Both wrong");
         }
     }
 }
