@@ -21,10 +21,13 @@ public class TestingMain {
 
         if (Calculator.add(1, 2) == 3) {
             System.out.println("Adding OK (Calculator class)");
-        } else if (Calculator.subtract(2, 2) == 0) {
+        } else {
+            System.out.println("Adding doesnt work");
+        }
+        if (Calculator.subtract(2, 2) == 0) {
             System.out.println("Subtraction OK (Calculator class");
         } else {
-            System.out.println("Error! Both wrong (Calculator class");
+            System.out.println("Subtraction doesnt work");
         }
     }
 }
