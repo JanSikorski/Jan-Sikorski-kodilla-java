@@ -8,6 +8,8 @@ public class ShapeCollectorTestSuite {
 
     private static int testCounter = 0;
 
+    private ShapeCollector shapeCollector;
+
     @BeforeAll
     public static void beforeAllTests() {
         System.out.println("Starting collection tests");
@@ -20,6 +22,7 @@ public class ShapeCollectorTestSuite {
 
     @BeforeEach
     public void beforeEveryTest() {
+        shapeCollector = new ShapeCollector();
         testCounter++;
         System.out.println("Preparing to execute test #" + testCounter);
     }
@@ -29,33 +32,39 @@ public class ShapeCollectorTestSuite {
     class ShapeCollectorTests {
 
         @Test
-        @DisplayName("Testing addFigure method")
+        @DisplayName("Testing addFigure and getFigure methods")
         void addFigureTest() {
-            //Given
-            ShapeCollector shapeCollector = new ShapeCollector();
-            //When
+            //Given When
             shapeCollector.addFigure(new Triangle(2, 3));
             shapeCollector.addFigure(new Square(2));
             //Then
-            assertEquals(shapeCollector.getFigure(0), "Triangle");
+            assertEquals(shapeCollector.getFigure(0), new Triangle(2,3));
+            assertEquals(shapeCollector.getFigure(1), new Square(2));
         }
-/*
+
 
         @Test
         @DisplayName("Testing removeFigure method")
         void removeFigureTest() {
-            //Given
-            ShapeCollector shapeCollector = new ShapeCollector();
-            Circle circle;
-            shapeCollector.addFigure(circle= new Circle(2));
-            //When
-            shapeCollector.removeFigure(circle);
+            //Given When
+            shapeCollector.addFigure(new Circle(2));
+            shapeCollector.addFigure(new Triangle(2, 3));
+
+            shapeCollector.removeFigure(new Circle(2));
             //Then
-            assertEquals(shapeCollector.getFigure(0), null);
+            assertEquals(shapeCollector.getFigure(0), new Triangle(2,3));
         }
-*/
 
-
+        @Test
+        @DisplayName("Testing showFigures method")
+        void showFigureTest() {
+            //Given When
+            shapeCollector.addFigure(new Triangle(2,3));
+            shapeCollector.addFigure(new Square(4));
+            shapeCollector.addFigure(new Circle(23));
+            //Then
+            String expectedResult = new Triangle(2,3) + ", " + new Square(4) + ", " + new Circle(23);
+            assertEquals(shapeCollector.showFigures(), expectedResult);
+        }
     }
 }
-//"Triangle(2.0, 3.0)\nSquare(2.0)", shapeCollector.showFigures()

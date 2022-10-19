@@ -14,15 +14,15 @@ public class ShapeCollector {
     public void removeFigure(Shape shape) {
         shapes.remove(shape);
     }
-    public String getFigure(int n) {
-        return shapes.get(n).getShapeName();
+    public Shape getFigure(int n) {
+        return shapes.get(n);
     }
     public String showFigures() {
         String figures = "";
         for (int i = 0; i < shapes.size(); i++) {
-            figures += shapes.get(i).toString();
+            figures += shapes.get(i);
             if (i < shapes.size()-1) {
-                figures += "\n";
+                figures += ", ";
             }
         }
         return figures;
