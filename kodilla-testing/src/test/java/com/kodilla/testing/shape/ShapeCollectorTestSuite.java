@@ -32,7 +32,7 @@ public class ShapeCollectorTestSuite {
     class ShapeCollectorTests {
 
         @Test
-        @DisplayName("Testing addFigure and getFigure methods")
+        @DisplayName("Testing addFigure method")
         void addFigureTest() {
             //Given When
             shapeCollector.addFigure(new Triangle(2, 3));
@@ -52,7 +52,20 @@ public class ShapeCollectorTestSuite {
 
             shapeCollector.removeFigure(new Circle(2));
             //Then
-            assertEquals(shapeCollector.getFigure(0), new Triangle(2,3));
+            assertNotEquals(shapeCollector.getFigure(0), new Circle(2));
+            assertEquals(shapeCollector.getFigure(0), new Triangle(2, 3));
+        }
+
+        @Test
+        @DisplayName("Testing getFigure method")
+        void getFigureTest() {
+            // Given When
+            shapeCollector.addFigure(new Triangle(23, 32));
+            shapeCollector.removeFigure(new Triangle(23, 32));
+            shapeCollector.addFigure(new Square(21.37));
+
+            //Then
+            assertEquals(new Square(21.37), shapeCollector.getFigure(0));
         }
 
         @Test
@@ -63,7 +76,7 @@ public class ShapeCollectorTestSuite {
             shapeCollector.addFigure(new Square(4));
             shapeCollector.addFigure(new Circle(23));
             //Then
-            String expectedResult = new Triangle(2,3) + ", " + new Square(4) + ", " + new Circle(23);
+            String expectedResult = "Triangle(2.0, 3.0), Square(4.0), Circle(23.0)";
             assertEquals(shapeCollector.showFigures(), expectedResult);
         }
     }
