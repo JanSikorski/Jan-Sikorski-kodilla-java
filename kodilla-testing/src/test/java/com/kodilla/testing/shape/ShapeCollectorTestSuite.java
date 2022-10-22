@@ -52,8 +52,7 @@ public class ShapeCollectorTestSuite {
 
             shapeCollector.removeFigure(new Circle(2));
             //Then
-            assertNotEquals(shapeCollector.getFigure(0), new Circle(2));
-            assertEquals(shapeCollector.getFigure(0), new Triangle(2, 3));
+            assertEquals(shapeCollector.showFigures().contains("Circle(2.0)"), false);
         }
 
         @Test
