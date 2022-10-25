@@ -59,7 +59,7 @@ class WeatherForecastTestSuite {
     }
 
     @Test
-    void testMedianTemperatureWithMock() {
+    void testMedianOddSizeTemperaturesWithMock() {
         //Given
         Map<String, Double> temperaturesMap = new HashMap<>();
         temperaturesMap.put("Rzeszow", 25.5);
@@ -76,5 +76,46 @@ class WeatherForecastTestSuite {
 
         //Then
         Assertions.assertEquals(25.5, medianTemperature);
+    }
+
+    @Test
+    void testMedianEvenSizeTemperaturesWithMock() {
+        //Given
+        Map<String, Double> temperaturesMap = new HashMap<>();
+        temperaturesMap.put("Rzeszow", 25.5);   //24.8 25.2 25.5 26.1 26.2 28.8
+        temperaturesMap.put("Krakow", 26.2);
+        temperaturesMap.put("Wroclaw", 24.8);
+        temperaturesMap.put("Warszawa", 25.2);
+        temperaturesMap.put("Gdansk", 26.1);
+        temperaturesMap.put("Szczein", 28.8);
+        when(temperaturesMock.getTemperatures()).thenReturn(temperaturesMap);
+
+        WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
+
+        //When
+        double medianTemperature = weatherForecast.medianTemperature();
+
+        //Then
+        Assertions.assertEquals(25.8, medianTemperature);
+    }
+    @Test
+    void TestSortingMethodWithMock() {
+        //Given
+        Map<String, Double> temperaturesMap = new HashMap<>();
+        temperaturesMap.put("Rzeszow", 25.5);
+        temperaturesMap.put("Krakow", 26.2);
+        temperaturesMap.put("Wroclaw", 24.8);
+        temperaturesMap.put("Warszawa", 25.2);
+        temperaturesMap.put("Gdansk", 26.1);
+        temperaturesMap.put("Szczein", 28.8);
+        when(temperaturesMock.getTemperatures()).thenReturn(temperaturesMap);
+
+        WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
+
+        //When
+        String temp = weatherForecast.sortTemperatures().toString();
+
+        //Then
+        Assertions.assertEquals("[24.8, 25.2, 25.5, 26.1, 26.2, 28.8]", temp);
     }
 }
