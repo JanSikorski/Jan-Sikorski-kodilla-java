@@ -25,48 +25,35 @@ public class WeatherForecast {
     public double averageTemperature() {
         double sum = 0.0;
 
-        for (double value: sortTemperatures()) {
+        if (getTemperaturesValues().size() == 0) {
+            return 0;
+        }
+
+        for (double value: getTemperaturesValues()) {
             sum += value;
         }
 
         return sum / temperatures.getTemperatures().size();
     }
 
-    public List<Double> sortTemperatures() {
+    public List<Double> getTemperaturesValues() {
 
-        List<Double> sortedTemperatures = new ArrayList<>();
+        List<Double> temperaturesArray = new ArrayList<>();
 
         for (Map.Entry<String, Double> temperature : temperatures.getTemperatures().entrySet()) {
-            sortedTemperatures.add(temperature.getValue());
+            temperaturesArray.add(temperature.getValue());
         }
-
-        //sorting mechanism
-
-        for (int i = 0; i < sortedTemperatures.size(); i++) {
-            for (int j = 0; j < sortedTemperatures.size(); j++) {
-                if (sortedTemperatures.get(i) < sortedTemperatures.get(j)) {
-                    double tmp = sortedTemperatures.get(i);
-                    sortedTemperatures.set(i, sortedTemperatures.get(j));
-                    sortedTemperatures.set(j, tmp);
-                }
-            }
-        }
-
-        return sortedTemperatures;
+        return temperaturesArray;
     }
     public double medianTemperature() {
 
-        List<Double> sortedTemperatures = sortTemperatures();
-        //in case if tempertaure map size is even, theres no middle value
-        if (sortedTemperatures.size() % 2 == 0) {
-            double lowerValue = sortedTemperatures.get(sortedTemperatures.size() / 2 - 1);
-            double higherValue = sortedTemperatures.get(sortedTemperatures.size() / 2);
+        if (getTemperaturesValues().size() == 0) {
+            return 0;
+        }
 
-            return (lowerValue + higherValue) / 2;
-        }
-        //in case if temperature map size is odd
-        else {
-            return sortedTemperatures.get(sortedTemperatures.size() / 2);
-        }
+        List<Double> sortedTemperatures = getTemperaturesValues();
+        Collections.sort(sortedTemperatures);
+
+        return sortedTemperatures.get(sortedTemperatures.size() / 2);
     }
 }
