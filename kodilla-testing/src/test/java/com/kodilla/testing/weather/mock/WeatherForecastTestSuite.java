@@ -96,6 +96,6 @@ class WeatherForecastTestSuite {
         double medianTemperature = weatherForecast.medianTemperature();
 
         //Then
-        Assertions.assertEquals(25.8, medianTemperature);
+        Assertions.assertEquals(26.1, medianTemperature);
     }
 }
