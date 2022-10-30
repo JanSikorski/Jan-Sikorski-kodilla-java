@@ -1,32 +1,25 @@
 package com.kodilla.stream;
 
+import com.kodilla.stream.beautifieer.DecoratorExecutor;
+import com.kodilla.stream.beautifieer.PoemBeautifier;
+import com.kodilla.stream.beautifieer.PoemDecorator;
 import com.kodilla.stream.lambda.*;
 
 public class StreamMain {
 
     public static void main(String[] args) {
-        Processor processor = new Processor();
-        processor.execute(() -> System.out.println("This is an example text."));
+        DecoratorExecutor decoratorExecutor = new DecoratorExecutor();
 
-        // [4]
-        ExpressionExecutor expressionExecutor = new ExpressionExecutor();       // [5]
+        decoratorExecutor.executeBeautification("Example text", PoemBeautifier::beautify);
+        decoratorExecutor.executeBeautification("Craaaaazy text", PoemBeautifier::beautify);
+        decoratorExecutor.executeBeautification("2137", PoemBeautifier::beautify);
 
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a + b);           // [6]
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a - b);           // [7]
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a * b);           // [8]
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);
+        decoratorExecutor.executeBeautification("", PoemBeautifier::removeAllSpace);
+        decoratorExecutor.executeBeautification("There is no space", PoemBeautifier::removeAllSpace);
+        decoratorExecutor.executeBeautification("Or is there", PoemBeautifier::removeAllSpace);
 
-        System.out.println("Calculating expressions with lambdas");
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a + b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a - b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a * b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);
-
-        System.out.println("Calculating expressions with method references");
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::multiplyAByB);
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::addAToB);
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::subBFromA);
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);
-
+        decoratorExecutor.executeBeautification("Letters Like Teeth", PoemBeautifier::removeRandomLetters);
+        decoratorExecutor.executeBeautification("Sometimes fall out", PoemBeautifier::removeRandomLetters);
+        decoratorExecutor.executeBeautification("Sometimes not", PoemBeautifier::removeRandomLetters);
     }
 }
