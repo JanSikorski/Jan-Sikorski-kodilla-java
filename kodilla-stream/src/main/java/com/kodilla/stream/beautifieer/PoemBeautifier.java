@@ -9,7 +9,6 @@ public class PoemBeautifier {
         String decoratedText = "";
         for (char character: text.toCharArray()) {
             decoratedText += (RANDOM.nextBoolean()) ? Character.toUpperCase(character) : Character.toLowerCase(character);
-
         }
         return decoratedText;
     }
