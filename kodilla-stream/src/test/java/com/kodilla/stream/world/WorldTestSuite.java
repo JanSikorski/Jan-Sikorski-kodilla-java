@@ -13,18 +13,18 @@ public class WorldTestSuite {
     void testGetPeopleQuantity() {
         //Given
         World world = new World();
-        Continent europe = new Continent();
-        europe.addCountries(new Country(new BigDecimal("38000000")));
-        europe.addCountries(new Country(new BigDecimal("71000000")));
+        Continent europe = new Continent("Europe");
+        europe.addCountries(new Country(new BigDecimal("38000000"), "Poland"));
+        europe.addCountries(new Country(new BigDecimal("71000000"), "Germany"));
         world.addContinents(europe);
 
-        Continent asia = new Continent();
-        asia.addCountries(new Country(new BigDecimal("51000000")));
-        asia.addCountries(new Country(new BigDecimal("560000000")));
+        Continent asia = new Continent("Asia");
+        asia.addCountries(new Country(new BigDecimal("51000000"), "Japan"));
+        asia.addCountries(new Country(new BigDecimal("560000000"), "India"));
         world.addContinents(asia);
 
-        Continent nAmerica = new Continent();
-        nAmerica.addCountries(new Country(new BigDecimal("320000000")));
+        Continent nAmerica = new Continent("North America");
+        nAmerica.addCountries(new Country(new BigDecimal("320000000"), "USA"));
         world.addContinents(nAmerica);
 
         //When
