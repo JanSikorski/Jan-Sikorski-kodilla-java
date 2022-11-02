@@ -13,6 +13,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class BoardTestSuite {
 
     @Test
+    void testAddTaskListAverageWorkingOnTask() {
+        //Given
+        Board project = prepareTestData();
+
+        //When
+        double averageTimeDoingInProgress = project.getTaskLists().stream()
+                .flatMap(l -> l.getTasks().stream())
+                .filter(t -> t.getDeadline().isBefore(LocalDate.now()))
+    }
+
+    @Test
     void testAddTaskListFindUsersTasks() {
         //Given
         Board project = prepareTestData();
@@ -56,7 +67,8 @@ public class BoardTestSuite {
         Board project = prepareTestData();
 
         //When
-        List<TaskList> inProgressTasks = new ArrayList<>();inProgressTasks.add(new TaskList("In progress"));
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
         long longTasks = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
