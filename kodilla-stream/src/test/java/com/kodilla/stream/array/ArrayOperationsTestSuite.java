@@ -8,17 +8,15 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ArrayOperationsTestSuite {
-    private static Random RANDOM = new Random();
 
     @Test
     void testGetAverage() {
         //Given
-        int[] numbers = IntStream.range(0, 20)
-                .toArray();
+        int[] numbers = new int[]{1, 2, 5, 12, 43, 0, -1};
         //When
         double average = ArrayOperations.getAverage(numbers);
 
         //Then
-        assertEquals(9.5, average);
+        assertEquals(8.857142857142858, average);
     }
 }
