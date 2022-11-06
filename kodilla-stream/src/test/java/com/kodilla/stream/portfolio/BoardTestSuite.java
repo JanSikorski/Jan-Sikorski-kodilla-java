@@ -27,11 +27,13 @@ public class BoardTestSuite {
                 .filter(inProgressTasks::contains)
                 .flatMap(taskList -> taskList.getTasks().stream())
                 .map(Task::getCreated)
-                .mapToLong(task -> )
+                .peek(task -> task.equals(ChronoUnit.DAYS.between(task, LocalDate.now())))
+                .mapToDouble(task -> LocalDate.now().toEpochDay() - task.toEpochDay())
+                .average().orElse(0);
 
 
         //Then
-        assertEquals(0, averageDaysInProgress);
+        assertEquals(10, averageDaysInProgress);
     }
 
     @Test
