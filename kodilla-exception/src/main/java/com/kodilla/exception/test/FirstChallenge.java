@@ -2,10 +2,19 @@ package com.kodilla.exception.test;
 
 public class FirstChallenge {
     public double divide(double a, double b) throws ArithmeticException {
-        if (b == 0) {
-            throw new ArithmeticException();
+        try {
+            if (b == 0) {
+                throw new ArithmeticException();
+            }
+
+            return a / b;
+        } catch (ArithmeticException e) {
+            System.out.println("Your exception: " + e);
+            return 0;
+        } finally {
+            System.out.println("End of calculations");
         }
-        return a / b;
+
     }
 
     /**
@@ -15,14 +24,7 @@ public class FirstChallenge {
     public static void main(String[] args) {
         FirstChallenge firstChallenge = new FirstChallenge();
 
-        try {
-            double result = firstChallenge.divide(3, 0);
-            System.out.println(result);
-        } catch (ArithmeticException e) {
-            System.out.println("Your Exception: " + e);
-        } finally {
-            System.out.println("End of calculations");
-        }
-
+        double result = firstChallenge.divide(3, 0);
+        System.out.println(result);
     }
 }
