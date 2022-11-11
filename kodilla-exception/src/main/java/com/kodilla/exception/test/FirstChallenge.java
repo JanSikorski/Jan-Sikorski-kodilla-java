@@ -15,11 +15,14 @@ public class FirstChallenge {
      * @param args
      */
     public static void main(String[] args) {
-        FirstChallenge firstChallenge = new FirstChallenge();
 
+        doDivide(3,0);
+    }
+
+    private static void doDivide(double a, double b) {
+        FirstChallenge firstChallenge = new FirstChallenge();
         try {
-            double result = firstChallenge.divide(3, 0);
-            System.out.println(result);
+            System.out.println(firstChallenge.divide(a, b));
         } catch (ArithmeticException e) {
             System.out.println("Your Exception: " + e);
         } finally {
