@@ -21,19 +21,16 @@ public class BoardTestSuite {
         Board project = prepareTestData();
 
         //When
-        List<TaskList> inProgressTasks = new ArrayList<>();
-        inProgressTasks.add(new TaskList("In progress"));
         double averageDaysInProgress  = project.getTaskLists().stream()
-                .filter(inProgressTasks::contains)
+                .filter(taskList -> taskList.getName().equals("In progress"))
                 .flatMap(taskList -> taskList.getTasks().stream())
-                .map(Task::getCreated)
-                .peek(task -> task.equals(ChronoUnit.DAYS.between(task, LocalDate.now())))
+                .map(task -> task.getCreated())
                 .mapToDouble(task -> LocalDate.now().toEpochDay() - task.toEpochDay())
                 .average().orElse(0);
 
 
         //Then
-        assertEquals(10, averageDaysInProgress);
+        assertEquals(10, averageDaysInProgress, 0.01);
     }
 
     @Test
