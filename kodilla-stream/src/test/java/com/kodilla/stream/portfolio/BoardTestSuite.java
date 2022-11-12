@@ -3,14 +3,35 @@ package com.kodilla.stream.portfolio;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BoardTestSuite {
+
+    @Test
+    void testAddTaskListAverageWorkingOnTask() {
+        //Given
+        Board project = prepareTestData();
+
+        //When
+        double averageDaysInProgress  = project.getTaskLists().stream()
+                .filter(taskList -> taskList.getName().equals("In progress"))
+                .flatMap(taskList -> taskList.getTasks().stream())
+                .map(task -> task.getCreated())
+                .mapToDouble(task -> LocalDate.now().toEpochDay() - task.toEpochDay())
+                .average().orElse(0);
+
+
+        //Then
+        assertEquals(10, averageDaysInProgress, 0.01);
+    }
 
     @Test
     void testAddTaskListFindUsersTasks() {
@@ -56,7 +77,8 @@ public class BoardTestSuite {
         Board project = prepareTestData();
 
         //When
-        List<TaskList> inProgressTasks = new ArrayList<>();inProgressTasks.add(new TaskList("In progress"));
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
         long longTasks = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
