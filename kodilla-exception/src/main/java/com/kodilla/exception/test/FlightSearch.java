@@ -1,17 +1,15 @@
 package com.kodilla.exception.test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class FlightSearch {
 
-    private Flight flight;
     public Flight findFlight(Flight flight) {
         Map<String, Boolean> aviableAirports = new HashMap<>();
 
-
-        if (flight.getArrivalAirport().equals())
-
-         return null;
+        String arivalAirtport =  aviableAirports.entrySet().stream()
+                .map(t -> t.getKey())
+                .filter(t -> flight.getArrivalAirport().equals(t))
+                .findFirst().orElse("");
     }
 }
