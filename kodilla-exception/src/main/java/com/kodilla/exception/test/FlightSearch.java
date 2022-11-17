@@ -4,16 +4,16 @@ import java.util.*;
 
 public class FlightSearch {
 
-    public void findFlight(Flight flight) throws RouteNotFoundException {
+    public boolean findFlight(Flight flight) throws RouteNotFoundException {
         Map<String, Boolean> aviableAirports = new HashMap<>();
-        if (aviableAirports.containsKey(flight.getArrivalAirport())) {
-            for (Map.Entry<String, Boolean> entry : aviableAirports.entrySet()) {
-                if (entry.getKey().equals(flight.getArrivalAirport())) {
-                    System.out.println(flight.getDepartureAirport() + " - " + flight.getArrivalAirport() + "\t exists");
-                }
-            }
+
+        aviableAirports.put("Toronto", true);
+        aviableAirports.put("London", false);
+
+        if (aviableAirports.get(flight.getArrivalAirport()) != null) {
+            return aviableAirports.get(flight.getArrivalAirport());
         } else {
-            throw new RouteNotFoundException();
+            throw new RouteNotFoundException(flight);
         }
     }
 }
