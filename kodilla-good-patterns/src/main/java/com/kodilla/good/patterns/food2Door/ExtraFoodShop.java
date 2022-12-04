@@ -12,4 +12,9 @@ public class ExtraFoodShop extends ProducerHandling{
     public void process() {
 
     }
+
+    @Override
+    public void addProductToFullfillment() {
+        super(productHandlingService.createProductList();)
+    }
 }
