@@ -1,6 +1,6 @@
 package com.kodilla.good.patterns.challenges;
 
-public class MailInformation implements InformationService {
+public class MailInformationService implements InformationService {
     @Override
     public void informSeller(User user) {
         System.out.println("Sending mail to " + user.getEmai() + "...\n" +

@@ -1,6 +1,6 @@
 package com.kodilla.good.patterns.challenges;
 
-public class SmsInformation implements InformationService{
+public class SmsInformationService implements InformationService{
     @Override
     public void informSeller(User user) {
         System.out.println("Sending message to " + user.getPhoneNumber() + "...\n" +
