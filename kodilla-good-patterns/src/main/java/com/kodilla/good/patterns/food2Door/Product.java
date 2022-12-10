@@ -1,10 +1,10 @@
 package com.kodilla.good.patterns.food2Door;
 
-public class ProductDto {
+public class Product {
     private String productName;
     private int productAmmount;
 
-    public ProductDto(String productName, int productAmmount) {
+    public Product(String productName, int productAmmount) {
         this.productName = productName;
         this.productAmmount = productAmmount;
     }

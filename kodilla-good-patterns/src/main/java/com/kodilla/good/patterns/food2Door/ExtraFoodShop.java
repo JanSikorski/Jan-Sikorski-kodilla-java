@@ -1,22 +1,15 @@
 package com.kodilla.good.patterns.food2Door;
 
-public class ExtraFoodShop implements ProcessProducer{
+public class ExtraFoodShop {
     private ShipmentFullfillmentService shipmentFullfillmentService;
     private ProductHandlingService productHandlingService;
+    private ProcessProducer processProducer;
 
-    public ExtraFoodShop(ShipmentFullfillmentService shipmentFullfillmentService, ProductHandlingService productHandlingService) {
+    public ExtraFoodShop(ShipmentFullfillmentService shipmentFullfillmentService, ProductHandlingService productHandlingService, ProcessProducer processProducer) {
         this.shipmentFullfillmentService = shipmentFullfillmentService;
         this.productHandlingService = productHandlingService;
+        this.processProducer = processProducer;
     }
 
-    @Override
-    public void addProducerAndProduct() {
-        Producer producer = new Producer("ExtraFoodShop", "Example adress for ExtraFoodShop");
-        productHandlingService.createProductList((new ProductDto("Mąka", 200), new ProductDto("Ziemniaki", 400)));
-    }
 
-    @Override
-    public void process() {
-
-    }
 }

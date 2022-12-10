@@ -1,6 +1,7 @@
 package com.kodilla.good.patterns.food2Door;
 
+import java.util.List;
+
 public interface ProcessProducer {
-    void addProducerAndProduct();
-    void process();
+    Producer addProducer();
 }

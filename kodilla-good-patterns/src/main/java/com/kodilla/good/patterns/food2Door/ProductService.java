@@ -4,14 +4,14 @@ import java.util.*;
 
 public class ProductService implements ProductHandlingService{
 
-    private final List<ProductDto> products = new ArrayList<>();
+    private final List<Product> products = new ArrayList<>();
 
-    public List<ProductDto> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
     @Override
-    public void createProductList(ProductDto[] products) {
+    public void createProductList(Product[] products) {
         this.products.addAll(Arrays.asList(products));
     }
 }
