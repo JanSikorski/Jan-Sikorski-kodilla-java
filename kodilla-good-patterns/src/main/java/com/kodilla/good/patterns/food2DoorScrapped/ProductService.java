@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.food2Door;
+package com.kodilla.good.patterns.food2DoorScrapped;
 
 import java.util.*;
 

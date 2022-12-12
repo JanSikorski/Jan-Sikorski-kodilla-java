@@ -1,8 +1,8 @@
-package com.kodilla.good.patterns.food2Door;
+package com.kodilla.good.patterns.food2DoorScrapped;
 
 public class Product {
-    private final String productName;
-    private final int productAmmount;
+    private String productName;
+    private int productAmmount;
 
     public Product(String productName, int productAmmount) {
         this.productName = productName;
