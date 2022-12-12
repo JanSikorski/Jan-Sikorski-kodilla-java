@@ -1,9 +1,6 @@
 package com.kodilla.good.patterns.FlightSearch;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Flights {
     private final List<Flight> flights = new ArrayList<>();
@@ -14,12 +11,5 @@ public class Flights {
 
     public List<Flight> getFlights() {
         return flights;
-    }
-
-    @Override
-    public String toString() {
-        return "Flights{" +
-                "flights=" + flights +
-                '}';
     }
 }

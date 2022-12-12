@@ -1,5 +1,6 @@
 package com.kodilla.good.patterns.FlightSearch;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class Flight {
