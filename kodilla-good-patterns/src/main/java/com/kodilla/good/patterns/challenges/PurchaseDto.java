@@ -2,16 +2,16 @@ package com.kodilla.good.patterns.challenges;
 
 public class PurchaseDto {
 
-    private User user;
-    private Offer offer;
+    private final User buyer;
+    private final Offer offer;
 
     public PurchaseDto(User user, Offer offer) {
-        this.user = user;
+        this.buyer = user;
         this.offer = offer;
     }
 
-    public User getUser() {
-        return user;
+    public User getBuyer() {
+        return buyer;
     }
 
     public Offer getOffer() {
