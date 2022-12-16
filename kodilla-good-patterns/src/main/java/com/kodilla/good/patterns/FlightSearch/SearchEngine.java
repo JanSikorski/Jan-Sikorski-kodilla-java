@@ -24,17 +24,25 @@ public class SearchEngine {
                 .collect(Collectors.toList());
     }
 
-    public Map<Flight, Flight> getFlightsWithStopover (String departureAirtport, String stopover, String arrivalAirport) {
-        List<Flight> flights1 = flights.getFlights().stream()
-                .filter(flight -> flight.getArrivalAirport().equals(stopover) && flight.getDepartureAirport().equals(departureAirtport))
-                .toList();
-        List<Flight> flights2 = flights.getFlights().stream()
-                .filter(flight -> flight.getDepartureAirport().equals(stopover) && flight.getArrivalAirport().equals(arrivalAirport))
+    public List<PairFlight> getFlightsWithStopover (String departureAirtport, String stopover, String arrivalAirport) {
+        List<Flight> firstFlight = getFlightBasedOnArrivalAirport(stopover).stream()
+                .filter(flight -> getFlightBasedOnDepartureAirport(departureAirtport).contains(flight))
                 .toList();
 
-        return IntStream.range(0, flights1.size()).boxed()
-                .collect(Collectors.toMap(flights1::get, flights2::get));
-    }
+        List<Flight> secondFlight = getFlightBasedOnDepartureAirport(stopover).stream()
+                .filter(flight -> getFlightBasedOnArrivalAirport(arrivalAirport).contains(flight))
+                .toList();
+        return firstFlight.stream().flatMap(flight -> secondFlight.stream().map(flight1 -> new PairFlight(flight, flight1))).toList();
+    }/*
+    getFlightBasedOnArrivalAirport(stopover).stream()
+                .filter(flight -> getFlightBasedOnArrivalAirport(departureAirtport).contains(flight))
+            .toList();*/
+
+/*
+    getFlightBasedOnArrivalAirport(arrivalAirport).stream()
+                .filter(flight -> getFlightBasedOnArrivalAirport(stopover).contains(flight))
+            .toList();
+*/
 
 
 }
