@@ -2,6 +2,7 @@ package com.kodilla.spring.portfolio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList {
 
@@ -13,5 +14,10 @@ public class TaskList {
 
     public List<String> getTasks() {
         return tasks;
+    }
+
+    @Override
+    public String toString() {
+        return  tasks.stream().collect(Collectors.joining("\n"));
     }
 }
