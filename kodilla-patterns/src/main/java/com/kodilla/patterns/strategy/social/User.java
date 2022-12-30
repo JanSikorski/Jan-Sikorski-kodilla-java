@@ -18,6 +18,6 @@ public class User {
     }
 
     public String sharePost() {
-        return socialPublisher.Share();
+        return socialPublisher.share();
     }
 }
